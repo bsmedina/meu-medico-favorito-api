@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const { database } = require("./db");
+const { database } = require("../db");
 
 const Doctor = database.define("Doctor", {
     id: {
@@ -14,7 +14,7 @@ const Doctor = database.define("Doctor", {
     crm: {
         type: DataTypes.STRING
     },
-    speciality: {
+    specialty: {
         type: DataTypes.STRING
     },
     clinic: {
@@ -30,6 +30,4 @@ const Doctor = database.define("Doctor", {
 
 Doctor.sync(); // fazemos com que essa tabela seja criada na base de dados caso ela ainda não exista.
 
-module.exports = {
-    Doctor
-};
+module.exports = Doctor;
