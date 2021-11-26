@@ -1,18 +1,23 @@
 const express = require("express");
 const app = express();
-require("./Doctors");
+
+const index = require("./routes/index");
+const doctors = require("./routes/doctors");
 
 app.use(express.json());
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); // Permite que qualquer domínio bata na aplicação
     res.header(
-        "Access-xControl-Allow-Headers", 
-        "Origin, X-Requested-With, Content-TypeError, Accept"
+        "Access-Control-Allow-Headers", 
+        "Origin, X-Requested-With, Content-Type, Accept"
     );
 
     next();
 });
+
+app.use("/", index);
+app.use("/doctors", doctors);
 
 //para que o front consiga utilizar as rotas que vamos criar precisamos dar essa permissão de acesso
 app.options("/*", (req, res) => {
