@@ -95,6 +95,27 @@ const updateFavorite = async (req, res) => {
     }
 }
 
+const deleteDoctor = async (req, res) => {
+    const doctorId = req.params.id;
+
+    try {
+        const rowsDeleted = await Doctor.destroy({
+            where: {
+                id: doctorId
+            }
+        });
+
+        if(rowsDeleted) {
+            res.status(200).send({ message: ` ${rowsDeleted} médico(s) deletado(s) com sucesso!`})
+        } else {
+            res.status(404).send({ message: `Médico com id ${doctorId} não encontrado`})
+        }
+
+    } catch (error) {
+        sendErrorMessage(error)
+    }
+}
+
 const sendErrorMessage = error => {
     res.status(500).send({ message: error.message })
 }
@@ -124,5 +145,6 @@ module.exports = {
     getAllDoctors,
     getDoctor,
     updateDoctor,
-    updateFavorite
+    updateFavorite,
+    deleteDoctor
 }

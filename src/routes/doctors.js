@@ -12,4 +12,6 @@ router.put("/:id", controller.updateDoctor);
 
 router.patch("/:id/favorite", controller.updateFavorite);
 
+router.delete("/:id", controller.deleteDoctor);
+
 module.exports = router;
