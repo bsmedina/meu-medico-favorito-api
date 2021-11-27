@@ -16,8 +16,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use("/", index);
-app.use("/doctors", doctors);
 
 //para que o front consiga utilizar as rotas que vamos criar precisamos dar essa permissão de acesso
 app.options("/*", (req, res) => {
@@ -25,10 +23,13 @@ app.options("/*", (req, res) => {
     res.header("Access-Control-Allow-Headers")
     res.header(
         "Access-Control-Allow-Methods",
-        "PUT, POST, GET, DELETE, OPTIONS, PATCH"
+        "PUT,POST,GET,DELETE,OPTIONS,PATCH"
     );
 
     res.send("send somenthing whatever");
-})
+});
+
+app.use("/", index);
+app.use("/doctors", doctors);
 
 module.exports = app;
